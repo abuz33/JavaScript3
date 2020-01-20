@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <script src='https://unpkg.com/axios/dist/axios.min.js'></script>
+  <script>
+    console.log('Axios Are you there? ', axios);
+
+    axios.get('https://api.github.com/user/repos', { 
+      headers: { 
+        Authorization : 'Bearer 5ff5839fc5027d1f8fbed12c992b4df35e2b74f0'  
+      } 
+    })
+    .then(function (response) {
+      // handle success
+      console.log('I got it boys', response);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log('What the fuzz the error is happening', error);
+    })
+    .finally(function () {
+      // always executed
+      console.log('I always will be printed.')
+    });
+
+    // function reqListener() {
+    //   const facts = JSON.parse(this.responseText);
+    //   console.log(facts);
+    //   const privateRepo = [];
+    //   facts.map( repo => {
+    //     if(repo.private === true){
+    //       privateRepo.push(repo);
+    //     };
+    //   });
+    //   console.log(privateRepo);
+    //   console.log(facts[0].name)
+    // }
+
+
+
+    // var oReq = new XMLHttpRequest();
+    // console.log("the request", oReq);
+    // oReq.addEventListener("load", reqListener);
+    // oReq.open('GET', 'https://api.github.com/user/repos');
+    // oReq.setRequestHeader('Authorization', 'bearer 5ff5839fc5027d1f8fbed12c992b4df35e2b74f0');
+    // oReq.send();
+    // console.log("sent the request, let's see...");
+  </script>
+</body>
+</html>
