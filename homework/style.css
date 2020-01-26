@@ -1,3 +1,43 @@
 .alert-error {
-  color: red;
+  color: rgb(218, 114, 114);
+  background-color: rgb(255, 225, 196);
+  padding: 10px;
+  margin-top: 10px;
+}
+
+header {
+background-color: #3f51b5;
+color: #f2f2f2;
+padding: 20px;
+color: #fff;
+font-size: 1.6rem;
+}
+table {
+box-shadow: 4px 4px 4px #666;
+color: #333;
+width: 100%;
+margin-left: -20px;
+margin-bottom: 50px;
+}
+
+th {
+width: 20%;
+padding-top: 10px;
+}
+
+li {
+list-style: none;
+}
+
+@media(max-width: 650px) {
+  table {
+    width: 90%;
+    margin-left: -20px;
+    margin-bottom: 50px;
+  }
+  header {
+    margin: 10px;
+    padding-left: 20px;    
+    width: 90%;
+  }
 }

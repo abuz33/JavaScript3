@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <style>
+    body {
+      margin: 20px 0 0 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      background: #031321;
+      font-family: consolas;
+    }
+    a {
+      position: relative;
+      display: inline-block;
+      padding: 15px 30px;
+      color: #2196f3;
+      text-decoration: none;
+      font-size: 12px;
+      overflow: hidden;
+      transition: 0.2s  ;
+    }
+    a:hover {
+      color: #255784;
+      background-color: #2196f3;
+      box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+    }
+    #axios {
+      width: 40%;
+    }
+
+    #xhr {
+      width: 40%;
+      margin-right: 25px;
+    }
+    img {
+      width: 70%;
+    }
+    li{
+      list-style: none;
+      margin-left: -40px;
+    }
+  </style>
+  <title>My Dog Galery</title>
+</head>
+<body>
+  <div id="xhr">
+    <a href="#" id="xhr-btn">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Random Dog Photo with xhr</a>
+    <div id="photo-xhr"><ul id="ul"></ul></div>
+  </div>
+
+  <div class="axios">
+    <a href="#" id="axios-btn">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Random Dog Photo with axios</a>
+    <div id="photo-axios"><ul id="ul-axios"></ul></div>
+  </div>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="./3-dog-galery.js"></script>
+</body>
+</html>
