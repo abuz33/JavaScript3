@@ -16,6 +16,10 @@
   //   xhr.send();
   // }
 
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}
+
   function createAndAppend(name, parent, options = {}) {
     const elem = document.createElement(name);
     parent.appendChild(elem);
@@ -116,7 +120,7 @@
           .forEach((repo, index) => {
             createAndAppend('option', select, {
               value: index,
-              text: repo.name,
+              text: capitalizeFirstLetter(repo.name),
             });
           });
 
@@ -126,7 +130,7 @@
       })
       .catch(err => {
         createAndAppend('p', root, {
-          text: err.message,
+          text: capitalizeFirstLetter(err.message),
           class: 'alert-error',
         });
       });
