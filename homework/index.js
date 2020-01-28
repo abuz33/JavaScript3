@@ -123,7 +123,7 @@
               text: capitalizeFirstLetter(repo.name),
             });
           });
-
+        renderContents(repos[0], table, contributorsContainer);
         select.addEventListener('change', () => {
           renderContents(repos[select.value], table, contributorsContainer);
         });
@@ -137,6 +137,6 @@
   }
 
   const HYF_REPOS_URL =
-    'https://api.github.com/orgs/HackYourFuture/repos?per_page=100';
+    'https://api.github.com/oxrgs/HackYourFuture/repos?per_page=100';
   window.onload = () => main(HYF_REPOS_URL);
 }
