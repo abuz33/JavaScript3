@@ -24,7 +24,7 @@ Like in any field, you first have to master the basics before you can create you
 
 It's the same way with programming.
 
-Up until now you implicitly learned a basic way of writing code, called `procedural programming`. In this style we break problems up into functions and variables, and execute them as one long procedure. There is no real thought behind code organisation or reusability, it just needs to be executed. In this style we essentially say: "Hey computer do this, then that, and also this and later that." There is not much thought put into it.
+Up until now you implicitly learned a basic way of writing code, called `procedural programming`. In this style we break problems up into functions and variables, and execute them as one long procedure. There is no real thought behind code organis ation or reusability, it just needs to be executed. In this style we essentially say: "Hey computer do this, then that, and also this and later that." There is not much thought put into it.
 
 > If you ever read about different "programming paradigms", you might we wondering how that relates to this. Actually, it's the exact same thing as a "programming style", it's just a fancier name for it.
 

@@ -1,21 +1,6 @@
 'use strict';
 
 {
-  // function fetchJSON(url, cb) {
-  //   const xhr = new XMLHttpRequest();
-  //   xhr.open('GET', url);
-  //   xhr.responseType = 'json';
-  //   xhr.onload = () => {
-  //     if (xhr.status >= 200 && xhr.status <= 299) {
-  //       cb(null, xhr.response);
-  //     } else {
-  //       cb(new Error(`Network error: ${xhr.status} - ${xhr.statusText}`));
-  //     }
-  //   };
-  //   xhr.onerror = () => cb(new Error('Network request failed'));
-  //   xhr.send();
-  // }
-
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
@@ -31,6 +16,20 @@
       }
     });
     return elem;
+  }
+
+  function fetchJSON(url, cb) {
+    const root = document.getElementById('root');
+
+    fetch(url)
+      .then(res => res.json())
+      .then(cb)
+      .catch(err => {
+        createAndAppend('p', root, {
+          text: capitalizeFirstLetter(err.message),
+          class: 'alert-error',
+        });
+      });
   }
 
   function renderRepoDetails(repo, table) {
@@ -53,38 +52,33 @@
   }
 
   function renderContributors(url, container) {
-    fetch(url)
-      .then(res => res.json())
-      .then(contributors => {
-        contributors.forEach(contributor => {
-          const divCont = createAndAppend('div', container, {
-            class: 'userContributors',
-          });
-          const img = createAndAppend('img', divCont);
-          img.src = contributor.avatar_url;
-
-          const pName = createAndAppend('p', divCont);
-
-          createAndAppend('a', pName, {
-            text: contributor.login,
-            href: contributor.html_url,
-            target:'_blank',
-          })
-          const pContributes = createAndAppend('p', divCont, {
-            class: 'contributes',
-          });
-
-          createAndAppend('span', pContributes, {
-            text:contributor.contributions
-          });
+    fetchJSON(url, contributors => {
+      if (contributors.ok) {
+        throw new Error('Something Happened');
+      }
+      contributors.forEach(contributor => {
+        const divCont = createAndAppend('div', container, {
+          class: 'userContributors',
         });
-      })
-      .catch(err => {
-        createAndAppend('div', container, {
-          text: err.message,
-          class: 'alert-error',
+        const img = createAndAppend('img', divCont);
+        img.src = contributor.avatar_url;
+
+        const pName = createAndAppend('p', divCont);
+
+        createAndAppend('a', pName, {
+          text: contributor.login,
+          href: contributor.html_url,
+          target: '_blank',
+        });
+        const pContributes = createAndAppend('p', divCont, {
+          class: 'contributes',
+        });
+
+        createAndAppend('span', pContributes, {
+          text: contributor.contributions,
         });
       });
+    });
   }
 
   function renderContents(repo, table, contributorsContainer) {
@@ -104,39 +98,32 @@
   }
 
   function main(url) {
-    const root = document.getElementById('root');
     const reposContainer = document.getElementById('repos');
     const contributorsContainer = document.getElementById('contributors');
     const select = document.querySelector('#repos-select');
     const table = createAndAppend('table', reposContainer);
 
-    fetch(url)
-      .then(res => res.json())
-      .then(repos => {
-        repos
-          .sort((a, b) => {
-            return a.name.localeCompare(b.name);
-          })
-          .forEach((repo, index) => {
-            createAndAppend('option', select, {
-              value: index,
-              text: capitalizeFirstLetter(repo.name),
-            });
+    fetchJSON(url, repos => {
+      if (repos.ok) {
+        throw new Error('Something Happened');
+      }
+      repos
+        .sort((a, b) => {
+          return a.name.localeCompare(b.name);
+        })
+        .forEach((repo, index) => {
+          createAndAppend('option', select, {
+            value: index,
+            text: capitalizeFirstLetter(repo.name),
           });
-        renderContents(repos[0], table, contributorsContainer);
-        select.addEventListener('change', () => {
-          renderContents(repos[select.value], table, contributorsContainer);
         });
-      })
-      .catch(err => {
-        createAndAppend('p', root, {
-          text: capitalizeFirstLetter(err.message),
-          class: 'alert-error',
-        });
+      select.addEventListener('change', () => {
+        renderContents(repos[select.value], table, contributorsContainer);
       });
+    });
   }
 
   const HYF_REPOS_URL =
-    'https://api.github.com/oxrgs/HackYourFuture/repos?per_page=100';
+    'https://api.github.com/orgs/HackYourFuture/repos?per_page=100';
   window.onload = () => main(HYF_REPOS_URL);
 }

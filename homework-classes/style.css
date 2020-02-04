@@ -1,3 +1,103 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .alert-error {
-  color: red;
+  color: rgb(218, 108, 108);
+  background-color: #ceb5b5;
+  padding: 10px;
+  font-size: large;
+}
+header {
+  background-color: blue;
+  padding: 20px;
+  color: #fff;
+  font-size: 1.4rem;
+}
+
+select {
+  margin-left: 20px;
+  font-size: 1.1rem;
+}
+
+h2 {
+  margin: 20px;
+}
+
+#contributors {
+  box-shadow: 4px 4px 4px #666;
+  margin-right: 20px;
+}
+#contTable {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 5px 0 10px 0;
+  width: 98%;
+}
+
+.userContributors {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 5fr min-content ;
+  align-items: center;
+  border-bottom: 1px solid rgb(133, 133, 133);
+  margin-bottom: 20px;
+  padding: 0 0 5px 0;
+}
+
+.userContributors p a {
+  color: blue;
+  font-size: 1.2rem;
+}
+
+.userContributors p a:visited {
+  color: blue;
+}
+
+table {
+  float: left;
+  box-shadow: 4px 4px 4px #666;
+  color: #333;
+  width: 100%;
+  margin: 0 0 0 0;
+  padding-left: 20px;
+  height: max-content;
+}
+th {
+  width: 20%;
+}
+img {
+  width: 50px;
+  margin-left: 7px;
+}
+
+.contributes {
+  float: right;
+  padding-right: 20px;
+}
+.contributes span {
+  font-size: 0.9rem;
+  padding: 2px 6px;
+  color: #fff;
+  background-color: gray;
+}
+
+@media (max-width: 800px) {
+  #root {
+    grid-template-columns: 1fr;
+  }
+
+  #repos {
+    width: 97%;
+    margin: 0 0 20px 0;
+  }
+  select {
+    background-color: #fff;
+    height: 20px;
+  }
+
+  #contributors{
+    width: 97%;
+  }
 }
