@@ -18,18 +18,17 @@
     return elem;
   }
 
-  function fetchJSON(url, cb) {
-    const root = document.getElementById('root');
-
-    fetch(url)
-      .then(res => res.json())
-      .then(cb)
-      .catch(err => {
-        createAndAppend('p', root, {
-          text: capitalizeFirstLetter(err.message),
-          class: 'alert-error',
-        });
-      });
+  async function fetchJSON(url, container) {
+    try {
+      const response = await axios.get(url);
+      const { data } = await response;
+      return data;
+    } catch (err) {
+      createAndAppend('p', container, {
+        text: err,
+        class: 'alert-error',
+      })
+    }
   }
 
   function renderRepoDetails(repo, table) {
@@ -51,8 +50,8 @@
     }
   }
 
-  function renderContributors(url, container) {
-    fetchJSON(url, contributors => {
+  async function renderContributors(url, container) {
+    fetchJSON(url, container).then(contributors => {
       if (contributors.ok) {
         throw new Error('Something Happened');
       }
@@ -97,16 +96,13 @@
     renderContributors(repo.contributors_url, divContributors);
   }
 
-  function main(url) {
+  async function main(url) {
     const reposContainer = document.getElementById('repos');
     const contributorsContainer = document.getElementById('contributors');
     const select = document.querySelector('#repos-select');
     const table = createAndAppend('table', reposContainer);
-
-    fetchJSON(url, repos => {
-      if (repos.ok) {
-        throw new Error('Something Happened');
-      }
+    const root = document.querySelector('#repos');
+    fetchJSON(url, root).then(repos => {
       repos
         .sort((a, b) => {
           return a.name.localeCompare(b.name);
