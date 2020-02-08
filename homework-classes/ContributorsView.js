@@ -19,10 +19,9 @@
      * @param {Object[]} contributors An array of contributor objects
      */
     render(contributors) {
+
       // TODO: replace this comment and the console.log with your own code
-      if (document.querySelector('.contributors-container')) {
-        document.querySelector('.contributors-container').removeChild;
-      }
+      document.querySelector('.contributors-container').innerText = '';
 
       const container = document.querySelector('.contributors-container');
       contributors.forEach(contributor => {

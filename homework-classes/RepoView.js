@@ -21,11 +21,10 @@
     render(repo) {
       // TODO: replace this comment and the console.log with your own code
 
-      if (document.querySelector('repo-container')) {
-        document.querySelector('repo-container').remove();
-      }
-
       const repoContainer = document.querySelector('.repo-container');
+
+      repoContainer.innerText = '';
+
       const titles = ['Repository:', 'Description:', 'Forks:', 'Updated:'];
       const keys = ['name', 'description', 'forks_count', 'updated_at'];
       const table = createAndAppend('table', repoContainer);

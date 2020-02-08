@@ -25,17 +25,14 @@ h2 {
   margin: 20px;
 }
 
-#contributors {
-  box-shadow: 4px 4px 4px #666;
-  margin-right: 20px;
+.main-container {
+  display: flex;
+  width: 100%;
 }
-#contTable {
-  display: grid;
-  grid-template-columns: 1fr;
-  padding: 5px 0 10px 0;
-  width: 98%;
+.whiteframe {
+  margin: 10px;
+  width: calc(50vw - 20px);
 }
-
 .userContributors {
   width: 100%;
   display: grid;
@@ -88,16 +85,17 @@ img {
     grid-template-columns: 1fr;
   }
 
-  #repos {
-    width: 97%;
-    margin: 0 0 20px 0;
+  .main-container{
+    flex-direction: column;
   }
   select {
     background-color: #fff;
     height: 20px;
   }
 
-  #contributors{
-    width: 97%;
-  }
+
+.whiteframe {
+  margin: 10px;
+  width: calc(100vw - 20px);
+}
 }
