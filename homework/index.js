@@ -111,7 +111,12 @@
     const table = createAndAppend('table', reposContainer);
 
     fetch(url)
-      .then(res => res.json())
+      .then(res => {
+        if (res.status === 404) {
+          throw new Error('404 not found');
+        }
+        return res.json();
+      })
       .then(repos => {
         repos
           .sort((a, b) => {
@@ -137,6 +142,6 @@
   }
 
   const HYF_REPOS_URL =
-    'https://api.github.com/oxrgs/HackYourFuture/repos?per_page=100';
+    'https://api.github.com/orgs/HackYourFuture/repos?per_page=100';
   window.onload = () => main(HYF_REPOS_URL);
 }
